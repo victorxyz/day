@@ -1,0 +1,27 @@
+<nav>
+  <input class="menu-btn navbar" type="checkbox" id="menu-btn">
+  <label class="menu-icon navbar" for="menu-btn"><span class="navicon"></span></label>
+  <ul id="nav-menu">
+    <li class="nav-label">
+      <h3><%= link_to "Chivalrous Run", root_path, class: "nav-label"%></h3>
+    </li>
+    <% if current_user.present? %>
+    <li class="nav-right">
+      <%= link_to "#{current_user.name}", profile_path %>
+    </li>
+    <li class="nav-right">
+      <%= link_to 'Edit Profile', profile_edit_path %>
+    </li>
+    <li class="nav-right">
+      <%= link_to 'Logout', logout_path, method: :delete %>
+    </li>
+    <% else %>
+    <li class="nav-right">
+      <%= link_to 'Register', register_path%>
+    </li>
+    <li class="nav-right">
+      <%= link_to 'Login', login_path%>
+    </li>
+    <% end %>
+  </ul>
+</nav>

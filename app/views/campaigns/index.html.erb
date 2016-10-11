@@ -1,0 +1,63 @@
+  <h1>Campaigns</h1>
+    <div class="row">
+    <% @campaigns.each do |campaign| %>
+      <div class="one-third column" style="border: solid 0.5px #555; border-radius:10px;padding: 20px;">
+        <h6 class="project-title"><strong><%= campaign.title %></strong></h6>
+        <p class="project-content"><%= campaign.description %></p>
+        <p class="project-content-extra"><%= campaign.beneficiary.name %></p>
+        <ul class="twelve columns">
+          <li class="project-footer">
+            <strong>$<%= campaign.target_amount %></strong>
+            <span class="project-footer-extra">Target</span>
+          </li>
+          <li class="project-footer">
+            <strong><%= campaign.deadline %></strong>
+            <span class="project-footer-extra">deadline</span>
+          </li>
+        </ul>
+        <ul class="twelve columns">
+          <li class="project-footer">
+            <strong>$<%= campaign.donations_total %></strong>
+            <span class="project-footer-extra">Total pledged</span>
+          </li>
+        </ul>
+
+        <%= form_for(@volunteer) do |f| %>
+          <% if @volunteer.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@volunteer.errors.count, "error") %> prohibited this volunteer from being saved:</h2>
+
+              <ul>
+              <% @volunteer.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field">
+            <%= f.hidden_field :name, :value=> @current_user.name %>
+          </div>
+          <%= f.hidden_field :quantity, :value=> 1 %>
+
+          <%= f.hidden_field :campaign_id, :value=> campaign.id %>
+
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        <% end %>
+
+
+
+        <div class="twelve column">
+          <%= link_to 'Pledge', new_donation_path(:id => campaign.id), :method => :get, class: "hvr-bounce-to-right button" %>
+        </div>
+        <div class="twelve column">
+          <%= link_to 'Volunteer', new_volunteer_path(:id => campaign.id), :method => :get, class: "hvr-bounce-to-right button" %>
+        </div>
+
+      </div>
+    <% end %>
+    </div>
+<br>
+<button class="hvr-bounce-to-right">hi</button>

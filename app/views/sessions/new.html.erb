@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="container">
+    <div class="container">
+      <div class="twelve columns space-top" style="margin-top: 50px;">
+        <%= form_for :user do |f| %>
+          <div class="field">
+            <%= f.label :email %>
+            <%= f.email_field :email, :required => true, class: "u-full-width" %>
+          </div>
+          <div class="field">
+            <%= f.label :password %>
+            <%= f.password_field :password, :required => true, class: "u-full-width" %>
+          </div>
+          <div class="action">
+            <%= f.submit "Login" %>
+          </div>
+          <%= link_to 'New user? Sign up here', register_path %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

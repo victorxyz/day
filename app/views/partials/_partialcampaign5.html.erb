@@ -1,0 +1,4 @@
+<div class="field">
+  <%= f.label :beneficiary_id %>
+  <%= f.select :beneficiary_id, Beneficiary.all.collect {|x| [x.name, x.id]} %>
+</div>
