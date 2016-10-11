@@ -6,4 +6,7 @@ class Campaign < ApplicationRecord
   def donations_total
     donations.sum(:amount)
   end
+  def volunteers_total
+    volunteers.sum(:quantity)
+  end
 end

@@ -6,6 +6,11 @@
         <p class="project-content"><%= campaign.description %></p>
         <p class="project-content-extra"><%= campaign.beneficiary.name %></p>
         <ul class="twelve columns">
+          <% campaign.volunteers_total.times do |i| %>
+          <i class="fa fa-odnoklassniki" aria-hidden="true"></i>
+          <% end %>
+        </ul>
+        <ul class="twelve columns">
           <li class="project-footer">
             <strong>$<%= campaign.target_amount %></strong>
             <span class="project-footer-extra">Target</span>
@@ -15,37 +20,40 @@
             <span class="project-footer-extra">deadline</span>
           </li>
         </ul>
+
         <ul class="twelve columns">
           <li class="project-footer">
             <strong>$<%= campaign.donations_total %></strong>
             <span class="project-footer-extra">Total pledged</span>
           </li>
         </ul>
+        <br />
+        <div class="twelve columns">
+          <%= form_for(@volunteer) do |f| %>
+            <% if @volunteer.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@volunteer.errors.count, "error") %> prohibited this volunteer from being saved:</h2>
 
-        <%= form_for(@volunteer) do |f| %>
-          <% if @volunteer.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@volunteer.errors.count, "error") %> prohibited this volunteer from being saved:</h2>
+                <ul>
+                <% @volunteer.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="field">
+              <%= f.hidden_field :name, :value=> @current_user.name %>
+            </div>
+            <%= f.hidden_field :quantity, :value=> 1 %>
 
-              <ul>
-              <% @volunteer.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-              </ul>
+            <%= f.hidden_field :campaign_id, :value=> campaign.id %>
+
+            <div>
+              <%= f.submit %>
             </div>
           <% end %>
+        </div>
 
-          <div class="field">
-            <%= f.hidden_field :name, :value=> @current_user.name %>
-          </div>
-          <%= f.hidden_field :quantity, :value=> 1 %>
-
-          <%= f.hidden_field :campaign_id, :value=> campaign.id %>
-
-          <div class="actions">
-            <%= f.submit %>
-          </div>
-        <% end %>
 
 
 

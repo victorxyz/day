@@ -16,13 +16,19 @@ class VolunteersController < ApplicationController
   end
   # POST /volunteer
   def create
-    @volunteer = Volunteer.new(volunteer_params)
-    @volunteer.user_id = current_user.id if current_user
-    if @volunteer.save
-      redirect_to campaigns_path, notice: 'volunteer was successfully created.'
+    # puts params[:volunteer][:campaign_id]
+    if Volunteer.exists?(user_id: current_user.id, campaign_id: params[:volunteer][:campaign_id])
+      #do nothing
+
     else
-      @campaigns = Campaign.where(id: @volunteer.campaign.id)
-      render :new
+      @volunteer = Volunteer.new(volunteer_params)
+      @volunteer.user_id = current_user.id if current_user
+      if @volunteer.save
+        redirect_to campaigns_path, notice: 'volunteer was successfully created.'
+      else
+        @campaigns = Campaign.where(id: @volunteer.campaign.id)
+        render :new
+      end
     end
   end
 
