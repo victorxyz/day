@@ -2,6 +2,7 @@ class CampaignsController < ApplicationController
   before_action :set_goal, only: [:show, :edit, :update, :destroy]
   before_action :is_authenticated
   before_action :is_authenticated_admin, except: [:index]
+  before_action :search
 
   # GET /campaigns
   def index

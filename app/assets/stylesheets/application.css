@@ -414,11 +414,46 @@ duplicate
 }
 
 
+/* Underline From Center */
+.hvr-underline-from-center {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow: hidden;
+}
+.hvr-underline-from-center:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  background: #fc3844;
+  height: 2px;
+  -webkit-transition-property: left, right;
+  transition-property: left, right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+  left: 0;
+  right: 0;
+}
+
+
 
 .space-top {
-  margin-top: 50px;
+  margin-top: 30px !important;
   margin: 0 auto;
-  border: solid 1px #555;
+  border: solid 1px #F1EEEA;
   border-radius:10px;
   padding: 20px;
 }
@@ -545,7 +580,7 @@ duplicate
 .progress-bar {
     background-color: #F1EEEA;
     height: 10px;
-    width: 350px;
+    /*width: 350px;*/
     margin: 10px 0;
     border-radius: 5px;
     /*box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;*/
@@ -599,4 +634,71 @@ duplicate
 #myBtn:hover{
   color: white;
   cursor: pointer;
+}
+
+.orange-color {
+  color: #fc3844
+}
+
+.campaign-style {
+  padding: 50px;
+  background: #e7e7e2 !important;
+}
+
+/*polygon logo*/
+.polygon {
+  background: #fff;
+  width: 76px;
+  height: 112px;
+  padding: 30px;
+  margin: 0 auto;
+}
+.polygon .flap {
+  float: left;
+  width: 38px;
+  height: 38px;
+}
+.polygon .flap-1 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 38px 38px 0;
+  border-color: transparent #6E0A10 transparent transparent;
+}
+.polygon .flap-2 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 38px 38px;
+  border-color: transparent transparent transparent #5C0409;
+}
+.polygon .flap-3 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 38px 0 0 38px;
+  border-color: transparent transparent transparent #870C14;
+  margin-top: -37.3px;
+}
+.polygon .flap-4 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 38px 38px 0 0;
+  border-color: #BF0D18 transparent transparent transparent;
+}
+.polygon .flap-5 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 38px 0 0 38px;
+  border-color: transparent transparent transparent #fc3844;
+}
+.polygon .flap-6 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 38px 38px;
+  border-color: transparent transparent #EB1A27 transparent;
+  margin-top: -37.3px;
 }

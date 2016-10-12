@@ -1,18 +1,25 @@
 <div class="container">
   <h1>Goals</h1>
-  <%= search_form_for @q do |f| %>
-  <%= f.search_field :title_or_description_cont %>
-  <%= f.submit  %>
-  <% end %>
   <%= will_paginate @posts %>
   <br>
     <div class="row">
     <% @goals.each do |goal| %>
-      <div class="one-third column" style="border: solid 0.5px #555; border-radius:10px;padding: 20px;">
+      <div class="one-third column bottom-20" style="border: solid 0.5px #F1EEEA; border-radius:10px;padding: 20px;">
         <h6 class="project-title"><strong><%= goal.title %></strong></h6>
-        <p class="project-byline"><%= goal.user.name %></p>
-        <p class="project-content"><%= goal.description %></p>
+        <p class="project-byline orange-color"><%= goal.user.name %></p>
+        <button id="myBtn10" type="button" name="button">See description</button>
+        <div id="myModal10" class="modal">
+          <div class="modal-content">
+             <div class="modal-header twelve columns">
+               <span class="close">&times</span>
+               <%= goal.description %>
+             </div>
+          </div>
+        </div>
         <p class="project-content-extra"><%= goal.beneficiary.name %></p>
+        <div class="progress-bar blue stripes orange twelve columns">
+          <span style="width: <%= (goal.pledges_total/goal.target_amount)*100 %>%"></span>
+        </div>
         <ul class="twelve columns">
           <li class="project-footer">
             <strong>$<%= goal.target_amount %></strong>

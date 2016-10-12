@@ -33,6 +33,9 @@ class ApplicationController < ActionController::Base
     return @current_user
   end
 
+  def search
+    @q = Goal.ransack(params[:q])
+  end
   # Methods defined as helper_methods are available in the views
   # ------------------------------------------------------------
   helper_method :current_user

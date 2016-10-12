@@ -158,11 +158,12 @@ p {
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
-  color: #1EAEDB;
+  color: #fc3844;
   text-decoration: none;
+  cursor: pointer;
  }
 a:hover {
-  color: #0FA0CE; }
+  color: #333; }
 
 
 /* Buttons
@@ -392,6 +393,17 @@ hr {
   content: "";
   display: table;
   clear: both; }
+
+
+/* Centering text
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+
+
+.center-text {
+  text-align: center !important;
+}
+
 
 
 /* Media Queries

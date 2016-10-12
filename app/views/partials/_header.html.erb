@@ -9,9 +9,9 @@
         <div class="modal-content">
            <div class="modal-header twelve columns">
              <span class="close">&times</span>
-             <%= form_tag(goals_path, :method => "get", class:"no-bottom") do %>
-               <%= text_field_tag :search, params[:search], placeholder: "Search goals", class:"nine columns no-bottom" %>
-               <%= submit_tag "Search", :name => nil, class:"no-bottom left-space" %>
+             <%= search_form_for @q do |f| %>
+               <%= f.search_field :title_or_description_cont, class:"nine columns no-bottom"%>
+               <%= f.submit nil, class:"no-bottom left-space" %>
              <% end %>
            </div>
         </div>
@@ -19,9 +19,6 @@
     </li>
     <li class="nav-right">
       <%= link_to "#{current_user.name}", profile_path %>
-    </li>
-    <li class="nav-right">
-      <%= link_to 'Edit Profile', profile_edit_path %>
     </li>
     <li class="nav-right">
       <%= link_to 'Logout', logout_path, method: :delete %>

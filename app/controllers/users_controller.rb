@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :is_authenticated, except: [:new, :create]
   before_action :is_authenticated_admin, only: [:index, :destroy, :toggle_admin]
-
+  before_action :search
   # GET /register
   def new
     @user = User.new
