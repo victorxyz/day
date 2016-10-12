@@ -1,12 +1,10 @@
 <div class="container">
   <h1>Goals</h1>
-
-  <div id="counter">
-  <%= link_to_previous_page @goals, 'Previous Page' %>
-  <%= link_to_next_page @goals, 'Next Page' %>
-  <br>
-  <%= page_entries_info @goals, :entry_name => 'goal', :remote => true %>
-  </div>
+  <%= search_form_for @q do |f| %>
+  <%= f.search_field :title_or_description_cont %>
+  <%= f.submit  %>
+  <% end %>
+  <%= will_paginate @posts %>
   <br>
     <div class="row">
     <% @goals.each do |goal| %>
