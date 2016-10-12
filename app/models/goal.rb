@@ -5,6 +5,9 @@ class Goal < ApplicationRecord
   def pledges_total
     pledges.sum(:amount)
   end
-
-
+  def self.search(search)
+    # where("title LIKE ? OR description LIKE ? OR user_id LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+    puts search
+    where("lower(title) LIKE ? OR description LIKE ?" , "%#{search.downcase}%", "%#{search.downcase}%")
+  end
 end

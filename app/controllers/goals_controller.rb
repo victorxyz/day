@@ -7,6 +7,11 @@ class GoalsController < ApplicationController
     @pledge = Pledge.new
     @goal = Goal.where(id: params[:id])
     @id = params[:id]
+    # if params[:search]
+    # @goals = Goal.search(params[:search]).order("created_at DESC")
+    # else
+    #   @goals = Goal.all.order("created_at DESC")
+    # end
   end
   # GET /goals/1
   def show

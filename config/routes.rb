@@ -1,13 +1,8 @@
 Rails.application.routes.draw do
 
 
-  get 'actions/new'
+  root 'main#index'
 
-  get 'donations/new'
-
-  get 'campaigns/new'
-
-  root 'goals#index'
 
   # AUTHENTICATION
   get "login" => "sessions#new"
