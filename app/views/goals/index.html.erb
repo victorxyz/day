@@ -1,4 +1,12 @@
   <h1>Goals</h1>
+
+  <div id="counter">
+  <%= link_to_previous_page @goals, 'Previous Page' %>
+  <%= link_to_next_page @goals, 'Next Page' %>
+  <br>
+  <%= page_entries_info @goals, :entry_name => 'goal', :remote => true %>
+  </div>
+  <br>
     <div class="row">
     <% @goals.each do |goal| %>
       <div class="one-third column" style="border: solid 0.5px #555; border-radius:10px;padding: 20px;">
@@ -45,9 +53,15 @@
           </div>
           <%= f.hidden_field :goal_id, :value=> goal.id %>
           <div class="actions">
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="<%= goal.title %>"
+              data-email="<%= goal.user.email %>"
+              data-amount="<%= @pledge.amount %>">
+            </script>
             <%= f.submit %>
           </div>
-        <% end %>
+          <% end %>
 
         <div class="twelve column">
           <%= link_to 'Pledge', new_pledge_path(:id => goal.id), :method => :get, class: "hvr-bounce-to-right button" %>
@@ -56,7 +70,6 @@
     <% end %>
     </div>
 
-  <br>
-
+<br>
   <%= button_to 'Book new goal', new_goal_path, :method => :get, class:"hvr-bounce-to-right" %>
 <button class="hvr-bounce-to-right">hi</button>

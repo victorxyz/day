@@ -35,5 +35,6 @@ Rails.application.routes.draw do
   end
   resources :donations, except: [:destroy, :update, :edit]
   resources :volunteers, except: [:destroy, :update, :edit]
+  resources :charges
 
 end

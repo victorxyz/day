@@ -1,6 +1,6 @@
 class PledgesController < ApplicationController
   before_action :set_pledge, only: [:show, :edit, :update, :destroy]
-  before_action :is_authenticated, except: [:index]
+  before_action :is_authenticated
   # GET /pledge
   def index
     @pledges = Pledge.all
@@ -19,16 +19,18 @@ class PledgesController < ApplicationController
   end
   # POST /pledge
   def create
-    @pledge = Pledge.new(pledge_params)
+    @pledge = Pledge.new (pledge_params)
+
     @pledge.user_id = current_user.id if current_user
-    if @pledge.save
+    if @pledge.valid?
+      @pledge.process_payment
+      @pledge.save
       redirect_to goals_path, notice: 'pledge was successfully created.'
     else
       @goals = Goal.where(id: @pledge.goal.id)
       render :new
     end
   end
-
   # PATCH/PUT /pledge/1
   def update
     if @pledge.update(pledge_params)
@@ -50,10 +52,15 @@ class PledgesController < ApplicationController
     def set_pledge
       @pledge = Pledge.find(params[:id])
     end
-
+    def stripe_params
+      params.permit :stripeEmail, :stripeToken
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def pledge_params
-      params.require(:pledge).permit(:amount, :goal_id)
+      params.
+      require(:pledge).
+      permit(:amount, :goal_id).
+      merge(email: stripe_params["stripeEmail"], card_token: stripe_params["stripeToken"])
     end
 
 end

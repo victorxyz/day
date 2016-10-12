@@ -3,7 +3,7 @@ class GoalsController < ApplicationController
   before_action :is_authenticated, except: [:index]
   # GET /goals
   def index
-    @goals = Goal.all
+    @goals = Goal.order('created_at DESC').page(params[:page]).per(3)
     @pledge = Pledge.new
     @goal = Goal.where(id: params[:id])
     @id = params[:id]
