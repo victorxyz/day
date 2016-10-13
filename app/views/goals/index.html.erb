@@ -7,15 +7,12 @@
       <div class="one-third column bottom-20" style="border: solid 0.5px #F1EEEA; border-radius:10px;padding: 20px;">
         <h6 class="project-title"><strong><%= goal.title %></strong></h6>
         <p class="project-byline orange-color"><%= goal.user.name %></p>
-        <button id="myBtn10" type="button" name="button">See description</button>
-        <div id="myModal10" class="modal">
-          <div class="modal-content">
-             <div class="modal-header twelve columns">
-               <span class="close">&times</span>
-               <%= goal.description %>
-             </div>
-          </div>
+
+        <button id="myBtn10" type="button" name="button" onclick="var x = document.getElementById('descriptionGoal<%= goal.id %>'); if (x.style.display === 'none') {x.style.display = 'block';} else {x.style.display = 'none';}">See description</button>
+        <div id="descriptionGoal<%= goal.id %>" class="twelve columns hide">
+            <%= goal.description %>
         </div>
+
         <p class="project-content-extra"><%= goal.beneficiary.name %></p>
         <div class="progress-bar blue stripes orange twelve columns">
           <span style="width: <%= (goal.pledges_total/goal.target_amount)*100 %>%"></span>
