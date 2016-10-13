@@ -2,6 +2,7 @@ class GoalsController < ApplicationController
   before_action :set_goal, only: [:show, :edit, :update, :destroy]
   before_action :is_authenticated, except: [:index]
   before_action :search
+  before_action :current_user
   # GET /goals
   def index
     @search = Goal.search(params[:q])

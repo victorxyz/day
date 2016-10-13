@@ -2,7 +2,12 @@
 <div class="container">
   <div class="row">
     <div class="six columns offset-by-three space-top">
-      <h2>Register</h2>
+      <h2 class="action">Register</h2>
+      <div class="twelve columns action">
+        <a href="/auth/facebook" class="hvr-bounce-to-right">
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+            Sign up with Facebook</a>
+      </div>
       <%= form_for @user, url: register_path do |f| %>
         <% if @user.errors.any? %>
           <div id="error_explanation">
